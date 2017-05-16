@@ -21,6 +21,6 @@ public class PromobagController {
     @RequestMapping("/user")
     public String getuser(){
         UserDaoImpl userDao = new UserDaoImpl();
-        return userDao.getUserByName("vincenzo").getName();
+        return userDao.getUserByName("vincenzo");
     }
 }
