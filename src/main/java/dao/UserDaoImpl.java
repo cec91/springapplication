@@ -25,7 +25,7 @@ public class UserDaoImpl implements UserDao {
 
 
 
-        List result = s.createQuery("from User").list();
+        List result = s.createQuery("from user").list();
         for (User event : (List<User>) result) {
             System.out.println(event.getName());
             return event.getName();
