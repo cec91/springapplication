@@ -1,5 +1,6 @@
 package bootwildfly;
 
+import dao.UserDaoImpl;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
@@ -15,5 +16,11 @@ public class PromobagController {
     @RequestMapping("/health/check")
     public String healthCheck(){
         return "Status OK - Promobag server";
+    }
+
+    @RequestMapping("/user")
+    public String getuser(){
+        UserDaoImpl userDao = new UserDaoImpl();
+        return userDao.getUserByName("vincenzo").getName();
     }
 }
