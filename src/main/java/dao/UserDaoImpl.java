@@ -16,6 +16,7 @@ public class UserDaoImpl implements UserDao {
 
     @Override
     public User getUserByName(String name) {
+        adapter = new HibernateAdapter();
         SessionFactory sf = adapter.getAdapter();
         Session s = sf.openSession();
         s.beginTransaction();
@@ -25,6 +26,7 @@ public class UserDaoImpl implements UserDao {
 
     @Override
     public void insertUser() {
+        adapter = new HibernateAdapter();
         SessionFactory sf = adapter.getAdapter();
         Session s = sf.openSession();
         s.beginTransaction();
