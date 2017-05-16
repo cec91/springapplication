@@ -5,6 +5,9 @@ import entities.User;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 
+import javax.persistence.EntityManager;
+import javax.persistence.EntityManagerFactory;
+import javax.persistence.Persistence;
 import java.util.List;
 
 /**
@@ -15,8 +18,15 @@ public class UserDaoImpl implements UserDao {
 
     HibernateAdapter adapter;
 
+    private EntityManagerFactory emf = Persistence.createEntityManagerFactory("PersistenceUnit");
+    private EntityManager em = emf.createEntityManager();
 
     @Override
+    public String getUserByName(String name) {
+        return ((User) em.createQuery("SELECT u FROM User u WHERE u.name =:name").setParameter("name", name).getSingleResult()).getName();
+    }
+
+    /*@Override
     public String getUserByName(String name) {
         adapter = new HibernateAdapter();
         SessionFactory sf = adapter.getAdapter();
@@ -33,7 +43,7 @@ public class UserDaoImpl implements UserDao {
         s.getTransaction().commit();
         s.close();
         return "";
-    }
+    }*/
 
     @Override
     public void insertUser() {
