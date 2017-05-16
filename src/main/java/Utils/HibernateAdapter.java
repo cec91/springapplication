@@ -20,7 +20,7 @@ public class HibernateAdapter {
     public SessionFactory getAdapter() {
 
         ClassLoader classLoader = getClass().getClassLoader();
-     
+
         Configuration configuration = new Configuration().configure(classLoader.getResource("hibernate.cfg.xml"));
         SessionFactory sessionFactory;
        // Configuration configuration = new Configuration().configure(HibernateAdapter.class.getResource("/hibernate.cfg.xml"));
@@ -28,7 +28,9 @@ public class HibernateAdapter {
         serviceRegistryBuilder.applySettings(configuration.getProperties());
         ServiceRegistry serviceRegistry = serviceRegistryBuilder.build();
         sessionFactory = configuration.buildSessionFactory(serviceRegistry);
-
+        if (sessionFactory == null ){
+            System.out.println("Session factory is null");
+        }
         return sessionFactory;
     }
 }
